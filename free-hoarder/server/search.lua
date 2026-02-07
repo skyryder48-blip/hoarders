@@ -12,14 +12,14 @@
 ---@return boolean isRestrained
 ---@return string|nil reason 'handcuffed' or 'handsup'
 function IsPlayerRestrainedServer(source)
-    local Player = exports.qbx_core:GetPlayer(source)
-    if not Player then return false, nil end
-    
+    local player = exports.qbx_core:GetPlayer(source)
+    if not player then return false, nil end
+
     -- Check handcuffed via metadata
-    if Player.PlayerData.metadata and Player.PlayerData.metadata.ishandcuffed then
+    if player.PlayerData.metadata and player.PlayerData.metadata.ishandcuffed then
         return true, 'handcuffed'
     end
-    
+
     -- Check state bags for various restraint states
     local playerState = Player(source).state
     if playerState then
